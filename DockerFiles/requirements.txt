@@ -1,0 +1,13 @@
+cmake
+pandas
+numpy
+matplotlib
+statsmodels
+sklearn
+xgboost
+keras
+grpcio==1.26.0
+tensorflow
+SpeechRecognition
+moviepy
+boto3

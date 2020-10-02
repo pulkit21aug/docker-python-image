@@ -1,0 +1,24 @@
+# getting base image amazonlinux:latest
+FROM amazonlinux
+
+MAINTAINER Pulkit Saxena
+
+WORKDIR /home
+RUN yum groupinstall -y "Development Tools"
+RUN yum install -y  make glibc-devel gcc gcc-c++ patch wget setuptools build-essential
+
+#cmake to installation of xgboost happy
+#RUN wget https://cmake.org/files/v3.10/cmake-3.10.0.tar.gz
+#RUN tar -xvzf cmake-3.10.0.tar.gz
+#WORKDIR /home/cmake-3.10.0
+#RUN ./bootstrap
+#WORKDIR /home
+
+RUN yum install -y python37 python3-pip
+
+COPY requirements.txt /home/requirements.txt
+RUN python3 -m pip install -r /home/requirements.txt
+
+COPY src /home/code
+
+CMD ["python3","/home/code/app.py"]
